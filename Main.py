@@ -36,7 +36,7 @@ def index():
         description = request.form['desc']
         style = request.form['style']
 
-        client = openai.OpenAI(api_key='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')
+        client = openai.OpenAI(api_key=os.environ.get('KEY'))
 
         try:
             response1 = client.images.generate(
