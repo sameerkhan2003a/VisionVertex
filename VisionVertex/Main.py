@@ -36,7 +36,7 @@ def index():
         description = request.form['desc']
         style = request.form['style']
 
-        client = openai.OpenAI(api_key='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')
+        client = openai.OpenAI(api_key=os.environ.get('secret_key'))
 
         try:
             response1 = client.images.generate(
@@ -128,8 +128,7 @@ def Logout():
     flash('You have been logged out.')
     return redirect(url_for('Login'))
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 
 
     
