@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .navbar-custom {
+        background-color: #8c7ae6;
+      }
+      .navbar-custom .navbar-brand,
+      .navbar-custom .navbar-text,
+      .navbar-custom .navbar-nav .nav-link {
+        color: #ffffff;
+      }
+      .footer {
+        background-color: #343434;
+        color:white;
+        position: fixed;
+        left: 0;
+        bottom: 0px;
+        width: 100%;
+    
+     
+        text-align: center;
+       
+        margin-top:60px;
+        
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Increased shadow opacity */
+    
+        padding: 0px;
+      
+        margin-top: 0px;
+   /* Added missing semicolon */
+ 
+    }
+      body {
+        background-image: url("https://th.bing.com/th/id/OIG.vOOjBEjTeyDaZHKfpnav?w=1024&h=1024&rs=1&pid=ImgDetMain");
+        background-size: cover;
+      }
+      .container {
+        background-color: #343434;
+        color:white;
+        padding: 40px;
+        border-radius: 25px;
+        margin-top: 130px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark fixed-top" style="background-color:black;">
+      <div class="container-fluid">
+        <img src="https://th.bing.com/th/id/OIG.Vy.KCqScHmg7728uz8dI?w=1024&h=1024&rs=1&pid=ImgDetMain" height="70px" width="70px">
+        <span class="navbar-brand" href="#">VisionVortex</span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasDarkNavbar"
+          aria-controls="offcanvasDarkNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end text-bg-dark"
+          tabindex="-1"
+          id="offcanvasDarkNavbar"
+          aria-labelledby="offcanvasDarkNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+             VisionVortex
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <hr style="background-color:white;">
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="/index">Home</a>
+            </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="about">About</a>
+                </li>
+                {% if session['username'] %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('Logout') }}">Logout</a>
+                </li>
+            {% endif %}
+         
+             
+    
+
+            </ul>
+    
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container my-6 py-5">
+      <h2 align="center">VisionVortex</h2>
+      <form action="/index" method="post" enctype="multipart/form-data">
+    
+          <div class="form-group">
+              <label for="result">Enter description:</label>
+              <textarea class="form-control" id="desc" name="desc" rows="3">{{ result }}</textarea>
+          </div>
+          <div class="form-group">
+              <label for="style">Choose a style: </label>
+              <select class="form-control" id="style" name="style">
+                  <option value="classic">Classic</option>
+                  <option value="modern">Modern</option>
+                  <option value="retro">Retro</option>
+                  <option value="neumorphic">Neumorphic</option>
+                  <option value="minimalist">Minimalist</option>
+                  <option value="grunge">Grunge</option>
+                  <option value="abstract">Abstract</option>
+                  <option value="popart">Pop Art</option>
+                  <option value="surrealist">Surrealist</option>
+                  <option value="impressionist">Impressionist</option>
+                </select>
+                
+                <input type="submit" class="btn btn-dark my-3"></input>
+              
+                <div class="containers my-6 py-6">
+                  <label for="results" class="my-1">Results will be shown here : </label>
+                  <div class="containers my-2" id="results" style="display: none;">
+                      <div class="row">
+                          <div class="col-sm d-flex justify-content-center">
+                              <div class="card" style="        border-radius: 55px;">
+                                  <img id="loading0" src="https://media3.giphy.com/media/RgzryV9nRCMHPVVXPV/200w.webp?cid=ecf05e47gfw8thyiq7vddtozpb2q902aa2xxol96ot5kxrt8 rounded&ep=v1_gifs_search&rid=200w.webp&ct=g" height="250" width="300" >
+                                  <img id="image0" src="{{url0}}" class="card-img-top rounded" alt="Image 0" style="display: none;" height="250" width="300" >
+                              </div>
+                          </div>
+                          <div class="col-sm d-flex justify-content-center">
+                              <div class="card" style="        border-radius: 55px;">
+                                  <img id="loading1" src="https://media3.giphy.com/media/RgzryV9nRCMHPVVXPV/200w.webp?cid=ecf05e47gfw8thyiq7vddtozpb2q902aa2xxol96ot5kxrt8 rounded&ep=v1_gifs_search&rid=200w.webp&ct=g" height="250" width="300" >
+                                  <img id="image1" src="{{url1}}" class="card-img-top rounded" alt="Image 1" style="display: none;" height="250" width="300" >
+                              </div>
+                          </div>
+                          <div class="col-sm d-flex justify-content-center">
+                              <div class="card" style="        border-radius: 55px;">
+                                  <img id="loading2" src="https://media3.giphy.com/media/RgzryV9nRCMHPVVXPV/200w.webp?cid=ecf05e47gfw8thyiq7vddtozpb2q902aa2xxol96ot5kxrt8 rounded&ep=v1_gifs_search&rid=200w.webp&ct=g" height="250" width="300" >
+                                  <img id="image2" src="{{url2}}" class="card-img-top-rounded" alt="Image 2" style="display: none;" height="250" width="300" >
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+      </form>
+      <div class="footer">
+        <p>Follow us on:</p>
+        <div class="footer-icons">
+            <a href="mailto:sameerkhan2003a@gmail.com"><img src="https://th.bing.com/th/id/R.88d88f1872909358b97ffa695cb97b66?rik=A77az%2fwRYB%2bLrw&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fGmail_logo_icon.png&ehk=8gYQfqc8h6fYCXddKEQE%2blQ7004YVwPu1S2LSHmiUgE%3d&risl=&pid=ImgRaw&r=0" alt="Gmail" style="width:32px;height:22px;"></a>
+            <a href="https://twitter.com/your_twitter_handle"><img src="https://th.bing.com/th?id=OSK.50a4337ddb8f32c31afe1610d3d99f0b&w=102&h=102&c=7&o=6&oif=webp&dpr=1.3&pid=SANGAM" alt="Twitter" style="width:32px;height:22px;"></a>
+            <a href="https://www.facebook.com/your_facebook_page"><img src="https://pngimg.com/uploads/facebook_logos/facebook_logos_PNG19757.png" alt="Facebook" style="width:32px;height:22px;"></a>
+        </div>
+        <p>&copy; 2023 Sameer Khan</p>
+      </div>
+    </div>
+    <script>
+      ['image0', 'image1', 'image2'].forEach(function(id, i) {
+        var img = document.getElementById(id);
+        var loading = document.getElementById('loading' + i);
+        img.addEventListener('load', function() {
+          // Hide the loading spinner and show the image when the image is loaded
+          loading.style.display = 'none';
+          this.style.display = 'block';
+        });
+        if (img.complete) {
+          loading.style.display = 'none';
+          img.style.display = 'block';
+        }
+      });
+      if (document.getElementById('image0').src || document.getElementById('image1').src || document.getElementById('image2').src) {
+        document.getElementById('results').style.display = 'block';
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+    </html>
+    
